@@ -28,7 +28,7 @@ const headerStyles = `
     /* Textura realzada con brillos fluorescentes y una sombra oscura para mejor legibilidad */
     color: white; /* Base del texto en blanco */
     text-shadow:
-      0 0 4px rgba(0, 0, 0, 0.8), /* Sombra oscura para pop */
+      1px 1px 2px black, /* Sombra oscura para contorno */
       0 0 10px ${FLUORESCENT_GREEN}, /* Brillo verde fluorescente */
       0 0 20px ${FLUORESCENT_RED}; /* Brillo rojo fluorescente */
   }
@@ -74,7 +74,7 @@ interface StatCardProps {
 export const StatCard: React.FC<StatCardProps> = ({ title, value, icon: Icon, color, bgColor }) => (
   // Borde cian vibrante
   <div className={`${bgColor} p-6 rounded-xl shadow-lg border-2 border-cyan-500 transform hover:scale-105 transition-transform`}>
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between w-full"> {/* Added w-full here */}
       <div>
         <p className="text-gray-300 text-lg font-bold">{title}</p>
         <p className={`text-3xl font-bold ${color}`}>${value.toLocaleString()}</p>
@@ -416,20 +416,20 @@ const DreamTeamFinanceApp: React.FC = () => {
 
       {/* Header con degradado fluorescente y textura */}
       <header className="static-header p-8 shadow-lg">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto text-center w-full"> {/* Added w-full here */}
           {/* Título blanco para contraste */}
-          <h1 className="text-5xl font-black text-white tracking-wide" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.8)' }}>DREAMTEAM</h1>
-          {/* Texto gris claro para subtítulo con sombra */}
-          <p className="text-gray-200 text-xl mt-2 font-bold subtitle-text-shadow">Gestor de Finanzas Personales</p>
+          <h1 className="text-5xl font-black text-white tracking-wide text-center" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.8)' }}>DREAMTEAM</h1> {/* Added text-center */}
+          {/* Texto blanco para subtítulo con sombra */}
+          <p className="text-white text-xl mt-2 font-bold subtitle-text-shadow text-center">Gestor de Finanzas Personales</p> {/* Changed to text-white, added text-center */}
           {/* Texto del autor con textura fluorescente mejorada */}
-          <p className="text-lg mt-2 font-semibold author-text-glow">By Otto N. Manrique</p>
+          <p className="text-lg mt-2 font-semibold author-text-glow text-center">By Otto N. Manrique</p> {/* Added text-center */}
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto p-6 space-y-8">
         {/* Módulo de Navegación de Meses */}
         <div className="bg-gray-900 p-4 rounded-xl shadow-lg border-2" style={{ borderColor: FLUORESCENT_GREEN }}> {/* Borde verde eléctrico */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full"> {/* Added w-full here */}
             <button
               onClick={() => navigateMonth('prev')}
               // Botones con el verde fluorescente y textura
@@ -623,7 +623,7 @@ const DreamTeamFinanceApp: React.FC = () => {
             </h3>
             <button
               onClick={() => setShowIncomeForm(!showIncomeForm)}
-              className="flex items-center gap-2 text-black px-4 py-2 rounded-lg transition-colors" /* Texto negro */
+              className="flex items-center gap-2 text-black px-4 py-2 rounded-lg transition-colors shadow-lg" /* Texto negro */
               style={{ backgroundColor: FLUORESCENT_GREEN, boxShadow: `0 0 10px ${FLUORESCENT_GREEN}` }}
             >
               <Plus size={20} /> Agregar Ingreso
@@ -682,7 +682,7 @@ const DreamTeamFinanceApp: React.FC = () => {
           <div className="space-y-2">
             {currentMonthData.incomes.length > 0 ? (
               currentMonthData.incomes.map(inc => (
-                <div key={inc.id} className="flex justify-between items-center p-3 bg-gray-800 rounded-lg"> {/* Fondo más oscuro */}
+                <div key={inc.id} className="flex justify-between items-center p-3 bg-gray-800 rounded-lg w-full"> {/* Added w-full here */}
                   <div>
                     <span className="font-medium text-gray-100">{inc.name}</span>
                     <span className="ml-4" style={{ color: FLUORESCENT_GREEN }}>${inc.amount.toLocaleString()}</span> {/* Valor verde fluorescente */}
@@ -726,7 +726,7 @@ const DreamTeamFinanceApp: React.FC = () => {
               <button
                 onClick={() => setShowExpenseForm(!showExpenseForm)}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center gap-2" // Botón rojo
-              >
+                >
                 <Plus size={20} /> Agregar Gasto
               </button>
             </div>
@@ -816,7 +816,7 @@ const DreamTeamFinanceApp: React.FC = () => {
           <div className="space-y-2">
             {currentMonthData.expenses.length > 0 ? (
               currentMonthData.expenses.map(exp => (
-                <div key={exp.id} className="flex justify-between items-center p-3 bg-gray-800 rounded-lg"> {/* Fondo más oscuro */}
+                <div key={exp.id} className="flex justify-between items-center p-3 bg-gray-800 rounded-lg w-full"> {/* Added w-full here */}
                   <div>
                     <span className="font-medium text-gray-100">{exp.category}</span>
                     <span className="text-red-400 ml-4">${exp.amount.toLocaleString()}</span> {/* Valor rojo */}
